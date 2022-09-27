@@ -2,8 +2,6 @@
 
 # API Security Checklist
 Checklist of the most important security countermeasures when designing, testing, and releasing your API.
-
-
 ---
 
 ## Authentication
@@ -33,13 +31,15 @@ Checklist of the most important security countermeasures when designing, testing
 - [ ] For private APIs, allow access only from whitelisted IPs/hosts.
 
 ## Input
+- [] Use HTTPS instead of HTTP.
 - [ ] Use the proper HTTP method according to the operation: `GET (read)`, `POST (create)`, `PUT/PATCH (replace/update)`, and `DELETE (to delete a record)`, and respond with `405 Method Not Allowed` if the requested method isn't appropriate for the requested resource.
 - [ ] Validate `content-type` on request Accept header (Content Negotiation) to allow only your supported format (e.g., `application/xml`, `application/json`, etc.) and respond with `406 Not Acceptable` response if not matched.
 - [ ] Validate `content-type` of posted data as you accept (e.g., `application/x-www-form-urlencoded`, `multipart/form-data`, `application/json`, etc.).
 - [ ] Validate user input to avoid common vulnerabilities (e.g., `XSS`, `SQL-Injection`, `Remote Code Execution`, etc.).
 - [ ] Don't use any sensitive data (`credentials`, `Passwords`, `security tokens`, or `API keys`) in the URL, but use standard Authorization header.
 - [ ] Use only server-side encryption.
-- [ ] Use an API Gateway service to enable caching, Rate Limit policies (e.g., `Quota`, `Spike Arrest`, or `Concurrent Rate Limit`) and deploy APIs resources dynamically.
+- [] Remove unused dependencies, unnecessary features, components, files, and documentation.
+- [] Always check for trusted sources. Get the packages for your application with an authorized signature so that no malicious component is included in the package.
 
 ## Processing
 - [ ] Check if all the endpoints are protected behind authentication to avoid broken authentication process.
@@ -70,13 +70,17 @@ Checklist of the most important security countermeasures when designing, testing
 - [ ] Design a rollback solution for deployments.
 
 
----
+## Encryption security
+- [ ] Use encryption for data during transmission and also when data is at rest. It can be one-way or two-way encryption. One-way encryption means only encryption but two-way means encryption as well as decryption.
 
-## See also:
-- [yosriady/api-development-tools](https://github.com/yosriady/api-development-tools) - A collection of useful resources for building RESTful HTTP+JSON APIs.
+## API Gateway
+- [ ] Use an API Gateway service to enable caching, Rate Limit policies (e.g., `Quota`, `Spike Arrest`, or `Concurrent Rate Limit`) and deploy APIs resources dynamically.
+- [ ] Set a Quota on the API calls count which means put limitations on the number of times an API is called.
+- [ ] The last step is a must. Keep the major resources like Operating Systems, the Internet Network being used, different Drivers, and API Components.
+----- 
 
-
----
+# See also:
+* [yosriady/api-development-tools](https://github.com/yosriady/api-development-tools) - A collection of useful resources for building RESTful HTTP+JSON APIs.
 
 # Contribution
 Feel free to contribute by forking this repository, making some changes, and submitting pull requests. For any questions drop us an email at `team@shieldfy.io`.
